@@ -1,8 +1,12 @@
 <main class="content">
   <h1>{{title}}</h1>
-  <nav>
+  <nav [hidden]="!authenticated()">
     <a routerLink="/dashboard">Dashboard</a>
     <a routerLink="/heroes">Heroes</a>
+    <a (click)="logout()">Logout</a>
+  </nav>
+  <nav [hidden]="authenticated()">
+    <a routerLink="/login">Login</a>
   </nav>
   <router-outlet></router-outlet>
   <app-messages></app-messages>

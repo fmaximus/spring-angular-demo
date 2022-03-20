@@ -1,0 +1,39 @@
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: DEBUG
+#  pattern:
+#    console: "%clr(%d{yy-MM-dd E HH:mm:ss.SSS}){blue} %clr(%-5p) %clr(%logger{0}){blue} %clr(%m){faint}%"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+db:
+  host: localhost
+  name: demo
+  username: demo
+  password: demopass
+
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://${db.host}/${db.name}
+    username: ${db.username}
+    password: ${db.password}
+  flyway:
+    url: jdbc:postgresql://${db.host}/${db.name}
+    user: ${db.username}
+    password: ${db.password}
+    baseline-on-migrate: true
+  security:
+    user:
+      password: password
+  output:
+    ansi:
+      enabled: always
+  jmx:
+    enabled: true
+    

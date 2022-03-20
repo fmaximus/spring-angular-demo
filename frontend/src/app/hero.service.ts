@@ -17,7 +17,7 @@ function plural(value: number, options: {[key: number]: string} & {other: string
   providedIn: 'root'
 })
 export class HeroService {
-  private static readonly heroesUrl = 'api/heroes';  // URL to web api
+  private static readonly heroesUrl = 'http://localhost:8080/api/heroes/';  // URL to web api
   private readonly httpOptions = Object.freeze({
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   });
@@ -33,7 +33,7 @@ export class HeroService {
   }
 
   getHero(id: number): Observable<Hero> {
-    const url = `${HeroService.heroesUrl}/${id}`;
+    const url = `${HeroService.heroesUrl}${id}`;
     return this.http.get<Hero>(url).pipe(
       tap(_ => this.log($localize`fetched hero id=${id}`)),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
@@ -45,7 +45,7 @@ export class HeroService {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Hero[]>(`${HeroService.heroesUrl}/?name=${term}`).pipe(
+    return this.http.get<Hero[]>(`${HeroService.heroesUrl}?name=${term}`).pipe(
       tap(x =>
         this.log($localize`found ${plural(x.length, {
           0: $localize`no heroes`,

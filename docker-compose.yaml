@@ -1,0 +1,42 @@
+version: "3.7"
+services:
+  db:
+    environment:
+      POSTGRES_USER: demo
+      POSTGRES_PASSWORD_FILE: /run/secrets/DB_PASSWORD
+    image: postgresql
+    restart: always
+    secrets:
+      - DB_PASSWORD
+    networks:
+      - spring-mysql
+  backend:
+    build:
+      context: backend
+      target: development
+    environment:
+      DB_HOST: db
+    secrets:
+      - DB_PASSWORD
+    networks:
+      - react-spring
+      - spring-mysql
+    depends_on:
+      - db
+    restart: on-failure:5
+  frontend:
+    build:
+      context: frontend
+      target: development
+    ports:
+      - 3000:3000
+    networks:
+      - react-spring
+    depends_on:
+      - backend
+secrets:
+  DB_PASSWORD:
+    file: db/password.txt
+networks:
+  react-spring: {}
+  spring-mysql: {}

@@ -1,0 +1,54 @@
+= Heroes API
+
+:toc:
+
+
+This is an example output for the heroes service:
+
+== List
+
+.request
+include::{snippets}/hero/list/http-request.adoc[]
+
+.response
+include::{snippets}/hero/list/http-response.adoc[]
+
+== Search
+
+.request
+include::{snippets}/hero/search/http-request.adoc[]
+
+.response
+include::{snippets}/hero/search/http-response.adoc[]
+
+== Get By Id
+
+.request
+include::{snippets}/hero/getById/http-request.adoc[]
+
+.response
+include::{snippets}/hero/getById/http-response.adoc[]
+
+== Create
+
+.request
+include::{snippets}/hero/create/http-request.adoc[]
+
+.response
+include::{snippets}/hero/create/http-response.adoc[]
+
+== Update
+
+.request
+include::{snippets}/hero/update/http-request.adoc[]
+
+.response
+include::{snippets}/hero/update/http-response.adoc[]
+
+== Delete
+
+.request
+include::{snippets}/hero/delete/http-request.adoc[]
+
+.response
+include::{snippets}/hero/delete/http-response.adoc[]

@@ -1,0 +1,3 @@
+spring:
+  r2dbc:
+    url: r2dbc:tc:postgresql:///demo?TC_IMAGE_TAG=9.6.8
